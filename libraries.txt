@@ -1,0 +1,8 @@
+// setup
+1. https://go.dev/doc/install
+2. Protobuf: https://github.com/protocolbuffers/protobuf/releases (download zip and set env path)
+3. grpc: create go-workspace folder and set GOPTH in env variables or using terminal: set GOPATH={path}
+
+// create src folder to create projects
+
+// test by running: go run main.go
