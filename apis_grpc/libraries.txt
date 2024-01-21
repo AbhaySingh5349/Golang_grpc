@@ -1,0 +1,19 @@
+// create module
+go mod init {module_name}
+
+// generate pb.go & grpc.pb.go files
+method 1. success: protoc -Iapis_grpc/proto --go_out=. --go-grpc_out=. apis_grpc/proto/greetings.proto
+method 2.
+        protoc --proto_path=E:\go-workspace\src\apis_grpc --go_out=E:\go-workspace\src\apis_grpc\compiled_protos --go_opt=paths=source_relative E:\go-workspace\src\apis_grpc\proto\greetings.proto
+        protoc --proto_path=E:\go-workspace\src\apis_grpc --go-grpc_out=E:\go-workspace\src\apis_grpc\compiled_protos --go-grpc_opt=paths=source_relative E:\go-workspace\src\apis_grpc\proto\greetings.proto
+
+// dependencies (make sure present inside dir with go.mod file):
+go get google.golang.org/grpc
+go get google.golang.org/grpc/codes
+go get google.golang.org/grpc/status
+go get google.golang.org/protobuf/reflect/protoreflect
+go get google.golang.org/protobuf/runtime/protoimpl
+
+// to hit server and client:
+1. go run server.go
+2. go run client.go
