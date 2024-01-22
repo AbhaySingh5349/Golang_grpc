@@ -6,3 +6,18 @@
 // create src folder to create projects
 
 // test by running: go run main.go
+
+// Installing Chocolatey:
+open powershell as administrator and check execution policy using: Get-ExecutionPolicy
+change it AllSigned: Set-ExecutionPolicy AllSigned
+if change is not applied, get list of execution policies: Get-ExecutionPolicy -List and use:  Set-ExecutionPolicy -Scope CurrentUser AllSigned -Force
+now install chocolatey: Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+to ensure chocolatey is installed: choco
+
+// installing make command
+choco install make -y
+make --version
+
+// installing jq to read config varaibles and use in makefile
+choco install jq
+jq --version

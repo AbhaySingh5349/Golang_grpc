@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "apis_grpc/protos"; // {module_name}/{folder_structure}
+
+import "protos/greetings_message.proto";
+
+service GreetService{
+    rpc Greet(GreetRequest) returns (GreetResponse);
+}

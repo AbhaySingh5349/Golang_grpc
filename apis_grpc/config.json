@@ -1,0 +1,6 @@
+{
+  "protoc": "protoc",
+  "project_dir": "E:\\go-workspace\\src\\apis_grpc",
+  "proto_dir": "E:\\go-workspace\\src\\apis_grpc\\protos",
+  "output_dir": "E:\\go-workspace\\src\\apis_grpc\\compiled_protos"
+}

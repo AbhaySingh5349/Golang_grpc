@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
-	pb "apis_grpc/compiled_protos/proto"
+	pb "apis_grpc/compiled_protos/protos"
 
 	"net"
 	"google.golang.org/grpc"
@@ -20,7 +20,7 @@ type GreetServiceServer struct{
 }
 
 func (s *GreetServiceServer) Greet(ctx context.Context,in *pb.GreetRequest) (*pb.GreetResponse, error){
-	fmt.Println("GREET FUNC INVOKED")
+	fmt.Println("GREET FUNC IS INVOKED after makefile is success with clean make & final")
 
 	fname := in.GetFirstName()
 
