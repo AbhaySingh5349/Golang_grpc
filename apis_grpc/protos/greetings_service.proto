@@ -9,4 +9,5 @@ import "protos/greetings_message.proto";
 service GreetService{
     rpc Greet(GreetRequest) returns (GreetResponse);
     rpc GreetWithDeadline(GreetRequest) returns (GreetResponse); // on server side, it waits for few seconds before responding to client
+    rpc GreetManyTimes(GreetRequest) returns (stream GreetResponse);
 }

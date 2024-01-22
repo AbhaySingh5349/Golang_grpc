@@ -16,7 +16,7 @@ func responseToGreetWithDeadline(client pb.GreetServiceClient, t time.Duration) 
 	ctx, cancel := context.WithTimeout(context.Background(), t)
 	defer cancel() // cancel will be called if deadline exceeded
 
-	req := &pb.GreetRequest{FirstName: "Abhay Singh greet witin 10 seconds"}
+	req := &pb.GreetRequest{FirstName: "Engineer Bassi greet witin 10 seconds"}
 	res, err := client.GreetWithDeadline(ctx, req)
 
 	if err != nil {

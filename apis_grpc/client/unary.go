@@ -10,7 +10,7 @@ import (
 // calls greet rpc endpoint
 func responseToUnary(client pb.GreetServiceClient) {
 	// calling 'rpc endpoint' (we will receive a response or an error)
-	req := &pb.GreetRequest{FirstName: "Abhay Singh, I'm SDE from IIT(ISM) Dhanbad"}
+	req := &pb.GreetRequest{FirstName: "Engineer Bassi, I'm SDE from IIT(ISM) Dhanbad"}
 	res, err := client.Greet(context.Background(), req)
 
 	if err != nil {
