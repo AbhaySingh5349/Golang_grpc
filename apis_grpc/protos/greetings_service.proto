@@ -11,4 +11,5 @@ service GreetService{
     rpc GreetWithDeadline(GreetRequest) returns (GreetResponse); // on server side, it waits for few seconds before responding to client
     rpc GreetManyTimes(GreetRequest) returns (stream GreetResponse);
     rpc LongGreet(stream GreetRequest) returns (GreetResponse); // client sends multiple request & server will send only 1 response
+    rpc GreetEveryone(stream GreetRequest) returns (stream GreetResponse); // bi-directional 
 }
