@@ -32,5 +32,6 @@ func main() {
 	// responseToUnary(client)
 	// responseToGreetWithDeadline(client, 10*time.Second)
 	// responseToGreetManyTimes(client)
-	responseToLongGreet(client)
+	// responseToLongGreet(client)
+	responseToGreetEveryone(client)
 }
