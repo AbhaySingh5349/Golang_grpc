@@ -9,7 +9,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"time"
+	// "time"
 )
 
 const (
@@ -30,5 +30,7 @@ func main() {
 	client := pb.NewGreetServiceClient(conn) // client is returned that is used to call 'rpc endpoint'
 
 	// responseToUnary(client)
-	responseToGreetWithDeadline(client, 10*time.Second)
+	// responseToGreetWithDeadline(client, 10*time.Second)
+	// responseToGreetManyTimes(client)
+	responseToLongGreet(client)
 }
