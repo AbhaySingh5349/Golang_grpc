@@ -10,7 +10,6 @@ import (
 )
 
 // we want to implement this function under GreetServiceServer type
-
 func (s *GreetServiceServer) GreetManyTimes(in *pb.GreetRequest, stream pb.GreetService_GreetManyTimesServer) error {
 	log.Printf("GreetManyTimes function was invoked: %v", in)
 
