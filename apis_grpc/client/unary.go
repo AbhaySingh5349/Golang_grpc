@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	pb "apis_grpc/compiled_protos/protos" // importing the generated librarys
+	pb "apis_grpc/compiled_protos/protos" // importing the generated libraries
 )
 
 // calls greet rpc endpoint
