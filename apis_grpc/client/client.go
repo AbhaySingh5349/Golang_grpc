@@ -5,7 +5,7 @@ import (
 	"context"
 	"log"
 
-	pb "apis_grpc/compiled_protos/proto" // importing the generated librarys
+	pb "apis_grpc/compiled_protos/protos" // importing the generated librarys
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -18,7 +18,7 @@ const (
 
 func responseToGreet(client pb.GreetServiceClient) {
 	// calling 'rpc endpoint' (we will receive a response or an error)
-	req := &pb.GreetRequest{FirstName: "Abhay Singh"}
+	req := &pb.GreetRequest{FirstName: "Abhay Singh, I'm SDE in Relianceee hehe wow"}
 	res, err := client.Greet(context.Background(), req)
 
 	if err != nil {
