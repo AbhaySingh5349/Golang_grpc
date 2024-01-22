@@ -4,10 +4,12 @@ package main
 import (
 	"log"
 
-	pb "apis_grpc/compiled_protos/protos" // importing the generated librarys
+	pb "apis_grpc/compiled_protos/protos" // importing the generated libraries
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+
+	"time"
 )
 
 const (
@@ -27,5 +29,6 @@ func main() {
 
 	client := pb.NewGreetServiceClient(conn) // client is returned that is used to call 'rpc endpoint'
 
-	responseToUnary(client)
+	// responseToUnary(client)
+	responseToGreetWithDeadline(client, 10*time.Second)
 }
