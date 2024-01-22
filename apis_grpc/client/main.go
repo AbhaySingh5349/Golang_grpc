@@ -2,7 +2,6 @@
 package main
 
 import (
-	"context"
 	"log"
 
 	pb "apis_grpc/compiled_protos/protos" // importing the generated librarys
@@ -16,27 +15,17 @@ const (
 	address = "localhost:8081"
 )
 
-func responseToGreet(client pb.GreetServiceClient) {
-	// calling 'rpc endpoint' (we will receive a response or an error)
-	req := &pb.GreetRequest{FirstName: "Abhay Singh, I'm SDE in Relianceee hehe wow"}
-	res, err := client.Greet(context.Background(), req)
-
-	if err != nil {
-		log.Fatalf("error in greeting: %v", err)
-	}
-	log.Printf("Greeting: %s", res.Result)
-}
-
 func main() {
 	// dial a connection to grpc
+	// since grpc is secure, so it uses SSL by default (but since we dont have credentials to connect with server, so we skip SSL here)
 	// WithBlock() means, this connection will not be returned until its made (acting as a blocking call to Dial)
 	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
-	defer conn.Close()
+	defer conn.Close() // executes in end to close connection
 
 	client := pb.NewGreetServiceClient(conn) // client is returned that is used to call 'rpc endpoint'
 
-	responseToGreet(client)
+	responseToUnary(client)
 }
