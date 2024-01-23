@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "basic_calculator/protos";
+
+message MaxRequest{
+    int32 num = 1;
+}
+
+message MaxResponse{
+    int32 max_response = 1;
+}

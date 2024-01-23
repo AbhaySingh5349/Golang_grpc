@@ -32,6 +32,6 @@ func main() {
 	// getSum(client)
 	// getSqrt(client)
 		// getPrimes(client)
-	getAverage(client)
-	// getMaximum(client)
+	// getAverage(client)
+	getMaximum(client)
 }
