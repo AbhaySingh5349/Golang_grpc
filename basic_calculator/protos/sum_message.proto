@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "basic_calculator/protos";
+
+message SumRequest{
+    int32 first_num = 1;
+    int32 second_num = 2;
+}
+
+message SumResponse{
+    int32 sum_response = 1;
+}

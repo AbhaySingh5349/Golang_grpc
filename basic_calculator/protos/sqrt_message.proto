@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "basic_calculator/protos";
+
+message SqrtRequest{
+    int32 num = 1;
+}
+
+message SqrtResponse{
+    float sqrt_response = 1;
+}

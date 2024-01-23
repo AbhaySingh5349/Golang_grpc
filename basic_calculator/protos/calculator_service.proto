@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "basic_calculator/protos";
+
+import "protos/sum_message.proto";
+import "protos/sqrt_message.proto";
+
+service CalculatorService{
+    rpc Sum(SumRequest) returns (SumResponse); // Unary API
+    rpc Sqrt(SqrtRequest) returns (SqrtResponse); // Unary API
+}
