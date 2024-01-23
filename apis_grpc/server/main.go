@@ -25,9 +25,9 @@ func main(){
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	s := grpc.NewServer()                                   // creating 'server object' from grpc module
+	s := grpc.NewServer() // creating 'server object' from grpc module
 	pb.RegisterGreetServiceServer(s, &GreetServiceServer{}) // register server as new grpc service to implement rpc endpoints
-	reflection.Register(s)                                  // for serializing & de-serializing data
+	reflection.Register(s) // for server to expose which endpoints are available & allow CLI to talk to server without priliminary .proto file
 
 	log.Printf("server listening at %v", listener.Addr())
 	if err := s.Serve(listener); err != nil {

@@ -21,3 +21,17 @@ make --version
 // installing jq to read config varaibles and use in makefile
 choco install jq
 jq --version
+
+// installing evans for interaction with gRPC clients (https://github.com/ktr0731/evans)
+go install github.com/ktr0731/evans@latest
+to check if installed: evans
+start server
+in client: evans --host localhost --port {port_num} --reflection repl
+
+basic usage: 1. show package
+             2. show message
+             3. show services
+             4. service {name_of_service_you_want_to_use} // use "tab" to switch between options shown in pop-up
+             5. call {rpc_end_point}
+             6*. for client streaming, add i/p by pressing enter, to get response, CTRL+D
+             7. CTRL + D to exit from bi-directional streaming
