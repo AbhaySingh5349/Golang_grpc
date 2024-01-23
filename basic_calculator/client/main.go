@@ -29,9 +29,9 @@ func main() {
 
 	client := pb.NewCalculatorServiceClient(conn)
 
-	getSum(client)
-	getSqrt(client)
-	//	getPrimes(client)
+	// getSum(client)
+	// getSqrt(client)
+		getPrimes(client)
 	// getAverage(client)
 	// getMaximum(client)
 }
