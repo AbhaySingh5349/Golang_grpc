@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "basic_calculator/protos";
+
+message PrimesRequest{
+    uint32 range = 1;
+}
+
+message PrimesResponse{
+    uint32 primes_response = 1;
+}

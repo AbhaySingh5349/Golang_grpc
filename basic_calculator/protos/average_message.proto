@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "basic_calculator/protos";
+
+message AverageReguest{
+    int32 num = 1;
+}
+
+message AverageResponse{
+    double average_response = 1;
+}
