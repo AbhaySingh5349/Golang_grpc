@@ -32,9 +32,10 @@ start server
 in client: evans --host localhost --port {port_num} --reflection repl
 
 basic usage: 1. show package
-             2. show message
-             3. show services
-             4. service {name_of_service_you_want_to_use} // use "tab" to switch between options shown in pop-up
-             5. call {rpc_end_point}
-             6*. for client streaming, add i/p by pressing enter, to get response, CTRL+D
-             7. CTRL + D to exit from bi-directional streaming
+             2. select a package: package {package_name}
+             3. show message
+             4. show services
+             5. service {name_of_service_you_want_to_use} // use "tab" to switch between options shown in pop-up
+             6. call {rpc_end_point}
+             7*. for client streaming, add i/p by pressing enter, to get response, CTRL+D
+             8. CTRL + D to exit from bi-directional streaming
