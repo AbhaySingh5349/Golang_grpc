@@ -39,3 +39,7 @@ basic usage: 1. show package
              6. call {rpc_end_point}
              7*. for client streaming, add i/p by pressing enter, to get response, CTRL+D
              8. CTRL + D to exit from bi-directional streaming
+
+// installing protolint and set env path
+https://github.com/yoheimuta/protolint (tar.gz file can be extracted using 7-zip file manager)
+to verify installation: protolint (in terminal)
