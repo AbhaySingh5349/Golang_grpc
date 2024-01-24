@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -24,6 +25,9 @@ const _ = grpc.SupportPackageIsVersion7
 type BlogServiceClient interface {
 	CreateBlog(ctx context.Context, in *Blog, opts ...grpc.CallOption) (*BlogID, error)
 	ReadBlog(ctx context.Context, in *BlogID, opts ...grpc.CallOption) (*Blog, error)
+	UpdateBlog(ctx context.Context, in *Blog, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteBlog(ctx context.Context, in *BlogID, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	BlogList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (BlogService_BlogListClient, error)
 }
 
 type blogServiceClient struct {
@@ -52,12 +56,65 @@ func (c *blogServiceClient) ReadBlog(ctx context.Context, in *BlogID, opts ...gr
 	return out, nil
 }
 
+func (c *blogServiceClient) UpdateBlog(ctx context.Context, in *Blog, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/protos.BlogService/UpdateBlog", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) DeleteBlog(ctx context.Context, in *BlogID, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/protos.BlogService/DeleteBlog", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *blogServiceClient) BlogList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (BlogService_BlogListClient, error) {
+	stream, err := c.cc.NewStream(ctx, &BlogService_ServiceDesc.Streams[0], "/protos.BlogService/BlogList", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &blogServiceBlogListClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type BlogService_BlogListClient interface {
+	Recv() (*Blog, error)
+	grpc.ClientStream
+}
+
+type blogServiceBlogListClient struct {
+	grpc.ClientStream
+}
+
+func (x *blogServiceBlogListClient) Recv() (*Blog, error) {
+	m := new(Blog)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // BlogServiceServer is the server API for BlogService service.
 // All implementations must embed UnimplementedBlogServiceServer
 // for forward compatibility
 type BlogServiceServer interface {
 	CreateBlog(context.Context, *Blog) (*BlogID, error)
 	ReadBlog(context.Context, *BlogID) (*Blog, error)
+	UpdateBlog(context.Context, *Blog) (*emptypb.Empty, error)
+	DeleteBlog(context.Context, *BlogID) (*emptypb.Empty, error)
+	BlogList(*emptypb.Empty, BlogService_BlogListServer) error
 	mustEmbedUnimplementedBlogServiceServer()
 }
 
@@ -70,6 +127,15 @@ func (UnimplementedBlogServiceServer) CreateBlog(context.Context, *Blog) (*BlogI
 }
 func (UnimplementedBlogServiceServer) ReadBlog(context.Context, *BlogID) (*Blog, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadBlog not implemented")
+}
+func (UnimplementedBlogServiceServer) UpdateBlog(context.Context, *Blog) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBlog not implemented")
+}
+func (UnimplementedBlogServiceServer) DeleteBlog(context.Context, *BlogID) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBlog not implemented")
+}
+func (UnimplementedBlogServiceServer) BlogList(*emptypb.Empty, BlogService_BlogListServer) error {
+	return status.Errorf(codes.Unimplemented, "method BlogList not implemented")
 }
 func (UnimplementedBlogServiceServer) mustEmbedUnimplementedBlogServiceServer() {}
 
@@ -120,6 +186,63 @@ func _BlogService_ReadBlog_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BlogService_UpdateBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Blog)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).UpdateBlog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/protos.BlogService/UpdateBlog",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).UpdateBlog(ctx, req.(*Blog))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_DeleteBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BlogID)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BlogServiceServer).DeleteBlog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/protos.BlogService/DeleteBlog",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BlogServiceServer).DeleteBlog(ctx, req.(*BlogID))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BlogService_BlogList_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(emptypb.Empty)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(BlogServiceServer).BlogList(m, &blogServiceBlogListServer{stream})
+}
+
+type BlogService_BlogListServer interface {
+	Send(*Blog) error
+	grpc.ServerStream
+}
+
+type blogServiceBlogListServer struct {
+	grpc.ServerStream
+}
+
+func (x *blogServiceBlogListServer) Send(m *Blog) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // BlogService_ServiceDesc is the grpc.ServiceDesc for BlogService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -135,7 +258,21 @@ var BlogService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ReadBlog",
 			Handler:    _BlogService_ReadBlog_Handler,
 		},
+		{
+			MethodName: "UpdateBlog",
+			Handler:    _BlogService_UpdateBlog_Handler,
+		},
+		{
+			MethodName: "DeleteBlog",
+			Handler:    _BlogService_DeleteBlog_Handler,
+		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "BlogList",
+			Handler:       _BlogService_BlogList_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "protos/blog.proto",
 }

@@ -25,9 +25,11 @@ func main() {
 
 	client := pb.NewBlogServiceClient(conn)
 
-	id := createNewBlog(client) // returns ID of blog
-	readNewBlog(client, id) // to pass hardcoded id: `{oid_value}`
+	// id := createNewBlog(client) // returns ID of blog
+	// id := `65b0790c9722082c9501b16a` 
+	// readNewBlog(client, id) // to pass hardcoded id: `{oid_value}`
+	// id := `65b0790c9722082c9501b16a` 
 	// updateExistingBlog(client, id)
 	// deleteBlog(client, id)
-	// getAllBlogs(client)
+	getAllBlogs(client)
 }

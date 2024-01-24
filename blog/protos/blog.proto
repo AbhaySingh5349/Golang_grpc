@@ -4,6 +4,8 @@ package protos;
 
 option go_package = "blog/protos";
 
+import "google/protobuf/empty.proto";
+
 message Blog{
     string id = 1; // as mongoDB returns uuid (bytes or string)
     string author_id = 2;
@@ -19,4 +21,7 @@ message BlogID{
 service BlogService{
     rpc CreateBlog(Blog) returns (BlogID); // mongoDB will create id for each blog and return 
     rpc ReadBlog(BlogID) returns (Blog); // returns blog instance
+    rpc UpdateBlog(Blog) returns (google.protobuf.Empty); // sending new instance of blog in DB, returns 'empty' if updated else 'error'
+    rpc DeleteBlog(BlogID) returns (google.protobuf.Empty);
+    rpc BlogList(google.protobuf.Empty) returns (stream Blog);
 }
