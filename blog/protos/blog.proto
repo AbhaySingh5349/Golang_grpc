@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package protos;
+
+option go_package = "blog/protos";
+
+message Blog{
+    string id = 1; // as mongoDB returns uuid (bytes or string)
+    string author_id = 2;
+    string title = 3; // title of blog
+    string content = 4;
+}
+
+// wrapper
+message BlogID{
+    string id = 1; // mongoDB returns uuid
+}
+
+service BlogService{
+    rpc CreateBlog(Blog) returns (BlogID); // mongoDB will create id for each blog and return 
+    rpc ReadBlog(BlogID) returns (Blog); // returns blog instance
+}

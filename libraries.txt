@@ -22,6 +22,9 @@ make --version
 choco install jq
 jq --version
 
+// to hit server and client (to include all files in server/client folder for compilation):
+go run (gci *.go).FullName
+
 // installing evans for interaction with gRPC clients (https://github.com/ktr0731/evans)
 go install github.com/ktr0731/evans@latest
 to check if installed: evans

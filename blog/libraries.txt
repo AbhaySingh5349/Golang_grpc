@@ -1,0 +1,8 @@
+// to spin-up docker services
+docker-compose up
+ 
+// to check services are up (admin:pass)
+localhost:8081
+
+// install mongoDB driver for 'go' (after initializing package)
+go get go.mongodb.org/mongo-driver/mongo
