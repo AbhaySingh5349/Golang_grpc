@@ -1,0 +1,6 @@
+{
+  "protoc": "protoc",
+  "project_dir": "E:\\go-workspace\\src\\blog",
+  "proto_dir": "E:\\go-workspace\\src\\blog\\protos",
+  "output_dir": "E:\\go-workspace\\src\\blog\\compiled_protos"
+}
